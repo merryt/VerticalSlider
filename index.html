@@ -1,57 +1,132 @@
 <!doctype html>
 <html>
 <head>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 <style type="text/css">
 	/* stylesheet goes here */
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		color: white;
+		font-family: verdana, arial, sans-serif;
+	}
+	.nextbtn img{
+		position:absolute;
+		top: 50px;	
+		left: 10px;
+	}
+	
+	#wrap{
+		width: 800px;
+		height: 600px;
+		position: absolute;
+		margin: 0 auto;
+		overflow: hidden;
+	}	
+	
+	.slide{
+		position: absolute;
+		display: block;
+		width: 800px;
+		height: 600px;
+		clear: both;
+	}
+	#qualvu{ 
+		background-color: #00AEEF; 
+		top: 0px;
+	}
+	#online{ 
+		background-color: #2C3037;
+		top: 600px;
+		}
+	#respondents{ 
+		background-color: #0B305D; 
+		top: 1200px;
+		}	
+	#blank{ 
+		top: 1800px;
+		}	
+
+	.main-header{
+		clear: both;
+		position: relative;
+		text-align:center;
+		margin: 400px auto 0 auto;
+		font-size: 25pt;
+	}
+	.sub-header{
+		clear: both;
+		position: relative;
+		text-align:center;
+		margin: 10px auto 0 auto;
+		font-size: 9pt;
+		
+	}	
+	
 </style>
-<script type="text/javascript">
-	// Javascript goes here
-	// don't worry about linking to jQuery in the live version, that is done by the TechCo site.
-</script>
-
-
-<div class="wrap"> // set 800X600 to fit in our div
-	<selection class="slide" id="qualvu">
+<div id="wrap"> <!--// set 800X600 to fit in our div-->
+	<div class="slide" id="qualvu">
 		<selection class="center-container">
 			<div class="img-holder">
 				<img src=""/>
 			</div>
 			<div class="main-header">
-				<h1></h1>
+				<h1>Qualvu</h1>
 			</div>
 			<div class="sub-header">
-				<h2></h2>
+				<h2>This study was conducted using Qualvu</h2>
 			</div>
 		</selection>
 		<div class="nextbtn">
-			<a href="#"><img src="#" /></a>
+			<a href="#"><img src="lib/arrow1.png" /></a>
 		</div>
-	</selection>
-	
+	</div>	
 <!--	ONLINE	-->
 	
-	<selection class="slide" id="online">
+	<div class="slide" id="online">
 		<selection class="center-container">
 			<div class="img-holder">
 				<img src=""/>
 			</div>
 			<div class="main-header">
-				<h1></h1>
+				<h1>Online</h1>
 			</div>
 			<div class="sub-header">
-				<h2></h2>
+				<h2>an online video platform for qualitative research.</h2>
 			</div>
 		</selection>
 		<div class="nextbtn">
-			<a href="#"><img src="#" /></a>
+			<a href="#"><img src="lib/arrow1.png" /></a>
 		</div>
-	</selection>
+	</div>
 	
 <!--	RESPONDENTS-->
 	
-	<selection class="slide" id="respondents">
+	<div class="slide" id="respondents">
+		<selection class="center-container">
+			<div class="img-holder">
+				<img src=""/>
+			</div>
+			<div class="main-header">
+				<h1>Honest</h1>
+			</div>
+			<div class="sub-header">
+				<h2>Participant responses were collected in natural settings <br />
+					 relevant to the project objectives and required insights,<br />
+					 at respondents' convenience, free from any outside influence.</h2>
+			</div>
+		</selection>
+		<div class="nextbtn">
+			<a href="#"><img src="lib/arrow1.png" /></a>
+		</div>
+	</div>
+<!--	blank -->
+	
+	<div class="slide" id="blank">
 		<selection class="center-container">
 			<div class="img-holder">
 				<img src=""/>
@@ -64,12 +139,41 @@
 			</div>
 		</selection>
 		<div class="nextbtn">
-			<a href="#"><img src="#" /></a>
+			<a href="#"><img src="lib/arrow1.png" /></a>
 		</div>
-	</selection>
+	</div>	
 	
-
-
+	
 </div>
+
+<script type="text/javascript">
+	// Javascript goes here
+	// don't worry about linking to jQuery in the live version, that is done by the TechCo site.
+	$("a").click(function() {
+ 		$("#wrap > div").each(function (i) {
+ 		   if (parseInt($(this).css("top"),10) > "-500") {
+ 		     var topcss = $(this).css("top");
+ 		     topcss = parseInt(topcss, 10) - 600;
+ 		     $(this).animate({"top": topcss}, 1500 );
+ 		     console.log(topcss);
+ 		   } else {
+ 		     $(this).css("top", "1200px");
+ 		     console.log("something should have moved");
+ 		   }
+ 		 });
+ 		
+	});
+	
+	$(".nextbtn img").hover(
+		function(){
+			$(this).stop();
+			$(this).animate({"top": "60px"},300)}, 
+		function(){
+			$(this).stop();
+			$(this).animate({"top": "50px"},500)}
+			);
+
+	
+</script>
 </body>
 </html>
